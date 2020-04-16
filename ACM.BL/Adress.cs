@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ACM.BL
 {
-    class Adress
+    public class Adress
     {
         public Adress()
         {
