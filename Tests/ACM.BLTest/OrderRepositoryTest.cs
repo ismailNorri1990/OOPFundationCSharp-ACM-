@@ -23,5 +23,39 @@ namespace ACM.BLTest
             Assert.AreEqual(expected.OrderDate, actual.OrderDate);
 
         }
+
+        [TestMethod]
+        public void OrderSaveTest()
+        {
+            //--Arrange
+            var orderRepository = new OrderRepository();
+            var updated = new Order(1)
+            {
+                OrderDate = new DateTimeOffset(DateTime.Now.Year, 4, 14, 10, 00, 00, new TimeSpan(7, 0, 0)),
+                HasChanges = true
+            };
+            //--Act
+            var actual = orderRepository.Save(updated);
+            //--Assert
+            Assert.AreEqual(true, actual);
+
+        }
+
+        [TestMethod]
+        public void OrderSaveTestInvalid()
+        {
+            //--Arrange
+            var orderRepository = new OrderRepository();
+            var updated = new Order(1)
+            {
+                OrderDate = null,
+                HasChanges = true
+            };
+            //--Act
+            var actual = orderRepository.Save(updated);
+            //--Assert
+            Assert.AreEqual(false, actual);
+
+        }
     }
 }

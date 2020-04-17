@@ -10,9 +10,9 @@ namespace ACM.BL
 
         public CustomerRepository()
         {
-            adressRepository = new AdressRepository();
+            AdressRepository = new AdressRepository();
         }
-        public AdressRepository adressRepository { get; set; }
+        public AdressRepository AdressRepository { get; set; }
 
         /// <summary>
         /// Retrieves the customer data
@@ -31,7 +31,7 @@ namespace ACM.BL
                 customer.EmailAdress = "ismail.norri.24@gmail.com";
                 customer.LastName = "Norri";
                 customer.FirstName = "Ismail";
-                customer.AdressList = adressRepository.RetrieveByCustomerId(customerId).ToList();
+                customer.AdressList = AdressRepository.RetrieveByCustomerId(customerId).ToList();
             }
             //Code that retrieve one customer
             return customer;
@@ -42,11 +42,31 @@ namespace ACM.BL
         /// </summary>
         /// <return></return>
 
-        public bool Save()
+        public bool Save(Customer customer)  
         {
             //Code that saves the defined customer
+            var success = true;
 
-            return true;
+            if (customer.HasChanges)
+            {
+                if (customer.IsValid)
+                {
+                    if (customer.IsNew)
+                    {
+                        //Call Create new customer 
+                    }
+                    else
+                    {
+                        //Call Update existing customer
+                    }
+                }
+                else
+                {
+                    success = false;
+                }
+            }
+
+            return success;
 
         }
     }
