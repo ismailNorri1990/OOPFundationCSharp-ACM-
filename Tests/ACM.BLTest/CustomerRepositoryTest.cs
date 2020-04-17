@@ -92,5 +92,95 @@ namespace ACM.BLTest
 
 
         }
+
+        [TestMethod]
+        public void SaveTestValid()
+        {
+            //--Arrange
+            var customerRepository = new CustomerRepository();
+            var updatedCustomer = new Customer(1)
+            {
+                FirstName = "Ismail",
+                LastName = "Norri",
+                EmailAdress = "ismail.norri.24@gmail.com",
+                HasChanges = true,
+                AdressList = new List<Adress>()
+                {
+             new Adress()
+            {
+                AdressType = 1,
+                City = "Casablanca",
+                Country = "Maroc",
+                PostalCode = "20390",
+                StateProvince = "Casa-Settat",
+                StreetLine1 = "19, Rue Lacordière",
+                StreetLine2 = "France Ville 2",
+            },
+            new Adress()
+            {
+                AdressType = 2,
+                City = "Casablanca",
+                Country = "Maroc",
+                PostalCode = "21500",
+                StateProvince = "Casa-Settat",
+                StreetLine1 = "Shore 5, Casanearshore",
+                StreetLine2 = "Sidi Maarouf",
+            }
+        }
+
+            };
+
+            //--Act
+            var actual = customerRepository.Save(updatedCustomer);
+
+            //--Assert
+            Assert.AreEqual(true, actual);
+
+        }
+
+        [TestMethod]
+        public void SaveTestInvalidLastname()
+        {
+            //--Arrange
+            var customerRepository = new CustomerRepository();
+            var updatedCustomer = new Customer(1)
+            {
+                FirstName = "Ismail",
+                LastName = "",
+                EmailAdress = "ismail.norri.24@gmail.com",
+                HasChanges = true,
+                AdressList = new List<Adress>()
+                {
+             new Adress()
+            {
+                AdressType = 1,
+                City = "Casablanca",
+                Country = "Maroc",
+                PostalCode = "20390",
+                StateProvince = "Casa-Settat",
+                StreetLine1 = "19, Rue Lacordière",
+                StreetLine2 = "France Ville 2",
+            },
+            new Adress()
+            {
+                AdressType = 2,
+                City = "Casablanca",
+                Country = "Maroc",
+                PostalCode = "21500",
+                StateProvince = "Casa-Settat",
+                StreetLine1 = "Shore 5, Casanearshore",
+                StreetLine2 = "Sidi Maarouf",
+            }
+        }
+
+            };
+
+            //--Act
+            var actual = customerRepository.Save(updatedCustomer);
+
+            //--Assert
+            Assert.AreEqual(false, actual);
+
+        }
     }
 }

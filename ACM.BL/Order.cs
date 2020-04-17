@@ -16,6 +16,8 @@ namespace ACM.BL
             OrderId = orderId;
             OrderItems = new List<OrderItem>();
         }
+
+        public override string ToString() => $"{OrderDate.Value.Date}({OrderId})";
         public List<OrderItem> OrderItems { get; set; }
         public int CustomerId { get; set; }
         public int CustomerType { get; set; }

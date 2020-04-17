@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ACM.BL
 {
-    public class Customer
+    public class Customer : EntityBase
     {
 
         public Customer(): this(0)
@@ -15,6 +15,8 @@ namespace ACM.BL
             CustomerId = customerId;
             AdressList = new List<Adress>(); 
         }
+
+        public override string ToString() => FullName;
 
 
         public List<Adress> AdressList { get; set; }
@@ -62,7 +64,7 @@ namespace ACM.BL
         /// </summary>
         /// <return></return>
 
-        public bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
 
