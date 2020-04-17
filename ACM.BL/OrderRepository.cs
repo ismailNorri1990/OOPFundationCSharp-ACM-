@@ -26,11 +26,31 @@ namespace ACM.BL
         /// </summary>
         /// <return></return>
 
-        public bool Save()
+        public bool Save(Order order)
         {
             //Code that saves the defined order
+            var success = true;
 
-            return true;
+            if (order.HasChanges)
+            {
+                if (order.IsValid)
+                {
+                    if (order.IsNew)
+                    {
+                        //Call Create new order 
+                    }
+                    else
+                    {
+                        //Call Update existing order
+                    }
+                }
+                else
+                {
+                    success = false;
+                }
+            }
+
+            return success;
 
         }
     }
