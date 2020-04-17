@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using acme.Common;
 
 namespace ACM.BL
 {
-    public class Customer : EntityBase
+    public class Customer : EntityBase, ILoggable
     {
 
         public Customer(): this(0)
@@ -58,6 +60,15 @@ namespace ACM.BL
             }
 
         }
+
+        /*        public string Log()
+                {
+                    var logString = CustomerId + ":" + FullName + " " + "Email: " + EmailAdress + " " + "Status: " + EntityState.ToString();
+
+                    return logString;
+                }*/
+
+        public string Log() => $"{CustomerId}: {FullName} Email: {EmailAdress} Status: {EntityState.ToString()}";
 
         /// <summary>
         /// Validate the customer data
